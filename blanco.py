@@ -1,3 +1,9 @@
+"""
+Un blanco que atraviesa un medio puede recibir una señal del radar y reflejarla, siendo detectado de esta manera
+"""
+
+import random
+
 class Blanco(object):
     """
     Define un blanco a ser detectado por un radar
@@ -7,20 +13,22 @@ class Blanco(object):
         self.amplitud = amplitud
         self.tiempo_inicial = tiempo_inicial
         self.tiempo_final = tiempo_final
-        #TODO: completar con la inicializacion de los parametros del objeto
-        pass
 
-    def reflejar(self, senal, tiempo_inicial, tiempo_final):
-        #tiempo durante el cual el blanco se está moviendo por el espacio, con sus propios tiempos
-        detection_time = (self.tiempo_final - self.tiempo_inicial).seconds
-        #tiempo durante el cual llega la señal del generador
-        #radar_signal_time =
-        # modificar la señal que llega, cambiarle de fase o amplitud.
-        # devolver señal modificada
+    def reflejar(self, señal, tiempo_inicial_detect, tiempo_final_detect):
+
+        #si los tiempos de "existencia" del blanco están dentro de los tiempos de detección del radar, reflejar
+        if tiempo_inicial_detect <= self.tiempo_inicial <= tiempo_final_detect \
+            and tiempo_inicial_detect <= self.tiempo_final <= tiempo_final_detect:
+            # modificar la señal que llega, modificando la amplitud según el parámetro propio del blanco
+            # y cambiando la fase de manera arbitraria.
+            # devolver señal modificada
+            return [x + self.amplitud for x in señal[random.randint(1,50):]]
+        else:
+            return False
 
 
         #TODO ver como se encajan los tiempos del blanco y del intervalo de tiempo
         #(interseccion de invervalos)
         # despues aplicar los parametros del blanco sobre ese intervalo de tiempo
-        pass
+        #pass
         

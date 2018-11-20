@@ -1,22 +1,25 @@
+"""
+
+Los medios albergan los blancos que reflejan las señales del radar
+
+"""
+
+
 class Medio(object):
 
-    def __init__(self, blancos):
+    def __init__(self, blancos = 0):
         self.blancos = blancos
 
 
     def reflejar(self, una_senal, tiempo_inicial, tiempo_final):
         """
-        Los blancos en el medio reflejan la senal
+        Los blancos en el medio reflejan la señal
         """
 
-        #TODO reflejar en un medio debe reflejar en todos los blancos de un medio
-        #tiene que colectar la señal que refleja el blanco y mandarla.
-
-        # lo de abajo no?
-        #si hay blancos, reflejar señal (que tiene que ver el tiempo?)
-        if self.blancos != 0:
-            #reflejar señal (pedirle la función reflejar al blanco)
-            signal_reflect = una_señal
-        #y devolver la senal reflejada (atenuada o corrida)
-        pass
-        #si no hay blanco, devolver señal vacia o señal de sarasa.
+        #el medio solo refleja si posee blancos dentro de él
+        if self.blancos == 0:
+            return False
+        #si hay blancos, reflejar señal
+        elif self.blancos != 0:
+            #el blanco dentro del medio refleja la seña
+            return self.blancos.reflejar(una_senal, tiempo_inicial, tiempo_final)
